@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CategoryComponent implements OnInit {
 
+  categoryName: string = "Now playing"
+
   constructor() { }
 
   ngOnInit(): void {
