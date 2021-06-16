@@ -1,0 +1,20 @@
+.header{
+  font-family: 'Do Hyeon', sans-serif;
+  font-size: 34px;
+  background-color: #767676;
+  color: #ffffff;
+  padding: 20px 0;
+  &__wrapper{
+    display: flex;
+  }
+}
+
+.logo{
+  cursor: pointer;
+}
+
+.logo:hover{
+  color: #00aeff;
+  transition: all ease 0.5s;
+  text-shadow: 2px 2px 2px rgb(255, 255, 255);
+}
