@@ -11,10 +11,10 @@
 
 .logo{
   cursor: pointer;
+  transition: all ease 0.5s;
 }
 
 .logo:hover{
   color: #00aeff;
-  transition: all ease 0.5s;
   text-shadow: 2px 2px 2px rgb(255, 255, 255);
 }
