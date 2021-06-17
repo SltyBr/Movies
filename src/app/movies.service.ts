@@ -14,7 +14,7 @@ export class MoviesService {
 
   public _url: string = "http://api.themoviedb.org/3/movie/now_playing?api_key=ebea8cfca72fdff8d2624ad7bbf78e4c"
 
-  getMovies(): Observable<IMovie[]>{
-    return this.http.get<IMovie[]>(this._url)
+  getMovies(): Observable<any>{
+    return this.http.get<any>(this._url)
   }
 }
