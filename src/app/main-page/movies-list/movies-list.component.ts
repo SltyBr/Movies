@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { IMovie } from 'src/app/imovie';
 import { IMovies } from 'src/app/imovies';
 import { MoviesService } from 'src/app/movies.service';
 
@@ -9,11 +10,9 @@ import { MoviesService } from 'src/app/movies.service';
 })
 export class MoviesListComponent implements OnInit {
 
-  public movies: any;
+  public movies: IMovie[] = [];
 
-  test = 'poster_path';
-
-  directive = 'http://image.tmdb.org/t/p/w342'
+  imageUrl = 'http://image.tmdb.org/t/p/w342'
 
   constructor( private _moviesService: MoviesService) { }
 
