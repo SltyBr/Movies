@@ -1,3 +1,7 @@
 <div class="movies-list">
-  <app-movies-card class="movies-list__item" *ngFor="let movie of movies" [poster_path]="directive + movie.poster_path"></app-movies-card>
+  <app-movies-card 
+    class="movies-list__item" 
+    *ngFor="let movie of movies" 
+    [poster_path]="directive + movie.poster_path">
+  </app-movies-card>
 </div>
