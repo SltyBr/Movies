@@ -9,12 +9,11 @@
   }
 }
 
-.logo{
+#logo{
+  color: #ffffff;
   cursor: pointer;
   transition: all ease 0.5s;
-}
-
-.logo:hover{
-  color: #00aeff;
-  text-shadow: 1px 1px 3px rgb(255, 255, 255);
+  &:hover{
+    color: #00aeff;
+  }
 }

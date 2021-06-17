@@ -8,6 +8,7 @@ import { MainPageComponent } from './main-page/main-page.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { CategoryComponent } from './main-page/category/category.component';
 import { MoviesListComponent } from './main-page/movies-list/movies-list.component';
+import { MoviesCardComponent } from './main-page/movies-list/movies-card/movies-card.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { MoviesListComponent } from './main-page/movies-list/movies-list.compone
     MainPageComponent,
     ToolbarComponent,
     CategoryComponent,
-    MoviesListComponent
+    MoviesListComponent,
+    MoviesCardComponent
   ],
   imports: [
     BrowserModule,
