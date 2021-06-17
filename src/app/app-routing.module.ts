@@ -1,15 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AppComponent } from './app.component';
-import { ToolbarComponent } from './toolbar/toolbar.component';
 
-const routes: Routes = [
-  {
-    path: '',
-    redirectTo: '',
-    pathMatch: 'full'
-  }
-];
+const routes: Routes = [];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
