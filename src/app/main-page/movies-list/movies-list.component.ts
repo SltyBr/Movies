@@ -11,6 +11,11 @@ import { MoviesService } from 'src/app/movies.service';
 })
 export class MoviesListComponent implements OnInit, OnDestroy {
   public movies: IMovie[] = [];
+  private onDestroy$ = new Subject<void>();
+
+  constructor( 
+    private moviesService: MoviesService
+  ) {}
 
   getMoviePosterPath(moviePosterPath: string): string {
     return `http://image.tmdb.org/t/p/w342${moviePosterPath}`;
@@ -19,12 +24,6 @@ export class MoviesListComponent implements OnInit, OnDestroy {
   trackByMovieId(index: number, movie: IMovie): number{
     return movie.id
   }
-
-  constructor( 
-    private moviesService: MoviesService,
-    private onDestroy$: Subject<void>
-  ) {}
-  
   
   ngOnInit(): void {
     this.moviesService.getMovies()
