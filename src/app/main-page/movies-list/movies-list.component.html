@@ -1,7 +1,7 @@
 <div class="movies-list">
   <app-movies-card 
     class="movies-list__item" 
-    *ngFor="let movie of movies" 
-    [posterPath]="imageUrl + movie.poster_path">
+    *ngFor="let movie of movies; trackBy: trackByMovieId" 
+    [posterPath]="moviePoster(movie.poster_path)">
   </app-movies-card>
 </div>
