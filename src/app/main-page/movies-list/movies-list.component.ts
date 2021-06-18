@@ -12,6 +12,9 @@ export class MoviesListComponent implements OnInit {
   public movies: IMovie[] = [];
 
   imageUrl = 'http://image.tmdb.org/t/p/w342'
+  getMoviePosterPath(moviePosterPath: string): string {
+    return `http://image.tmdb.org/t/p/w342${moviePosterPath}`;
+  }
 
   constructor( private _moviesService: MoviesService) { }
 

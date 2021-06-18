@@ -2,6 +2,6 @@
   <app-movies-card 
     class="movies-list__item" 
     *ngFor="let movie of movies; trackBy: trackByMovieId" 
-    [posterPath]="moviePoster(movie.poster_path)">
+    [posterPath]="getMoviePosterPath(movie.poster_path)">
   </app-movies-card>
 </div>
