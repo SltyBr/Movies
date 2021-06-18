@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { IMovie } from 'src/app/imovie';
-import { IMovies } from 'src/app/imovies';
 import { MoviesService } from 'src/app/movies.service';
 
 @Component({
@@ -8,18 +9,31 @@ import { MoviesService } from 'src/app/movies.service';
   templateUrl: './movies-list.component.html',
   styleUrls: ['./movies-list.component.scss']
 })
-export class MoviesListComponent implements OnInit {
+export class MoviesListComponent implements OnInit, OnDestroy {
   public movies: IMovie[] = [];
 
-  imageUrl = 'http://image.tmdb.org/t/p/w342'
   getMoviePosterPath(moviePosterPath: string): string {
     return `http://image.tmdb.org/t/p/w342${moviePosterPath}`;
   }
 
-  constructor( private _moviesService: MoviesService) { }
+  trackByMovieId(index: number, movie: IMovie): number{
+    return movie.id
+  }
 
+  constructor( 
+    private moviesService: MoviesService,
+    private onDestroy$: Subject<void>
+  ) {}
+  
+  
   ngOnInit(): void {
-    this._moviesService.getMovies()
-        .subscribe( data => this.movies = data.results);
+    this.moviesService.getMovies()
+        .pipe(takeUntil(this.onDestroy$))
+        .subscribe( moviesData => this.movies = moviesData.results);
+  }
+
+  ngOnDestroy(): void {
+    this.onDestroy$.next();
+    this.onDestroy$.complete();
   }
 }
