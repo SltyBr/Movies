@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { IMovie } from 'src/app/main-page/config/models/imovie';
-import { MoviesService } from 'src/app/movies.service';
+import { MoviesService } from 'src/app/main-page/services/movies/movies.service';
 
 @Component({
   selector: 'app-movies-list',
