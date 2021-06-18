@@ -9,7 +9,6 @@ import { MoviesService } from 'src/app/movies.service';
   styleUrls: ['./movies-list.component.scss']
 })
 export class MoviesListComponent implements OnInit {
-
   public movies: IMovie[] = [];
 
   imageUrl = 'http://image.tmdb.org/t/p/w342'
@@ -20,6 +19,4 @@ export class MoviesListComponent implements OnInit {
     this._moviesService.getMovies()
         .subscribe( data => this.movies = data.results);
   }
-
-
 }

@@ -1,17 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-category',
   templateUrl: './category.component.html',
   styleUrls: ['./category.component.scss']
 })
-export class CategoryComponent implements OnInit {
-
-  categoryName: string = "Now playing"
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+export class CategoryComponent {
+  categoryName = "Now playing";
 }
