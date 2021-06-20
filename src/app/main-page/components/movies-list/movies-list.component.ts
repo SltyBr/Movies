@@ -11,7 +11,9 @@ import { MoviesService } from 'src/app/main-page/services/movies/movies.service'
 })
 export class MoviesListComponent implements OnInit, OnDestroy {
   public movies: IMovie[] = [];
+  public totalPages!: number;
   private onDestroy$ = new Subject<void>();
+  public pageNumber: number = 1;
 
   constructor( 
     private moviesService: MoviesService
@@ -21,14 +23,46 @@ export class MoviesListComponent implements OnInit, OnDestroy {
     return `http://image.tmdb.org/t/p/w342${moviePosterPath}`;
   }
 
+  getMoviesService(){
+    this.moviesService
+        .getMovies(this.pageNumber)
+        .pipe(takeUntil(this.onDestroy$))
+        .subscribe( (moviesData)=>{
+          this.movies = moviesData.results;
+        });
+  }
+
   trackByMovieId(index: number, movie: IMovie): number{
     return movie.id
   }
+
+  getNextPage(){
+    this.pageNumber++;
+    this.getMoviesService()
+  }
+  
+  getPrevPage(){
+    this.pageNumber--;
+    this.getMoviesService()
+  }
+
+  getFirstPage(){
+    this.pageNumber = 1;
+    this.getMoviesService()
+  }
+
+  getLastPage(){
+    this.pageNumber = this.totalPages;
+    this.getMoviesService()
+  }
   
   ngOnInit(): void {
-    this.moviesService.getMovies()
-        .pipe(takeUntil(this.onDestroy$))
-        .subscribe( moviesData => this.movies = moviesData.results);
+    this.getMoviesService();
+    this.moviesService.getMovies(this.pageNumber)
+    .pipe(takeUntil(this.onDestroy$))
+    .subscribe( (moviesData)=>{
+      this.totalPages = moviesData.total_pages;
+    });
   }
 
   ngOnDestroy(): void {
