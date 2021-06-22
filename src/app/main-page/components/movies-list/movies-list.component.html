@@ -2,13 +2,12 @@
   class="movies-list__pagination"
   [pageNumber]="pageNumber"
   [totalPages]="totalPages"
-  (getFirstPageEmmiter)="pageNumber = 1; getMoviesService()"
-  (getLastPageEmmiter)="pageNumber = totalPages; getMoviesService()">
+  (onBtnClick)="getMoviesService($event);">
 </app-pagination>
 <div class="movies-list">
   <app-movies-card 
-    class="movies-list__item" 
-    *ngFor="let movie of movies; trackBy: trackByMovieId" 
-    [posterPath]="getMoviePosterPath(movie.poster_path)">
-  </app-movies-card>
+  class="movies-list__item" 
+  *ngFor="let movie of movies; trackBy: trackByMovieId" 
+  [posterPath]="getMoviePosterPath(movie.poster_path)">
+</app-movies-card>
 </div>

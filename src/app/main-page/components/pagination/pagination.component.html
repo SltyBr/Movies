@@ -1,11 +1,12 @@
 <button 
   class="pagination-item"
   *ngIf="pageNumber !== 1"
-  (click)="getFirstPage()"
+  (click)="getPage(pageNumber = 1)"
   >First</button>
 <button 
   class="pagination-item"
-  *ngIf="pageNumber > 1"
+  *ngIf="pageNumber > 2"
+  (click)="getPage(pageNumber = pageNumber - 1)"
   >Prev</button>
 <button 
   class="pagination-item pagination-item--disabled" 
@@ -15,6 +16,7 @@
 <button 
   class="pagination-item"
   *ngIf="pageNumber > 1"
+  (click)="getPage(pageNumber = pageNumber - 1)"
   >{{ pageNumber - 1 }}</button>
 <button 
   class="pagination-item active"
@@ -22,19 +24,21 @@
 <button 
   class="pagination-item"
   *ngIf="pageNumber !== totalPages"
+  (click)="getPage(pageNumber = pageNumber + 1)"
   >{{ pageNumber + 1 }}</button>
 <button 
   class="pagination-item pagination-item--disabled" 
   disabled
-  *ngIf="!(pageNumber > totalPages - 1)"
+  *ngIf="pageNumber < totalPages - 1"
   >...</button>
 <button 
   class="pagination-item"
-  *ngIf="!(pageNumber > totalPages - 1)"
+  *ngIf="pageNumber < totalPages - 1"
+  (click)="getPage(pageNumber = pageNumber + 1)"
   >Next</button>
 <button 
   class="pagination-item"
-  *ngIf="pageNumber !== totalPages"
-  (click)="getLastPage()"
+  *ngIf="pageNumber < totalPages - 1"
+  (click)="getPage(pageNumber = totalPages)"
   >Last</button>
 

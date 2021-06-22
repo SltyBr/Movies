@@ -10,18 +10,9 @@ export class PaginationComponent{
   @Input() pageNumber: number = 0;
   @Input() totalPages: number = 0;
 
-  @Output() getFirstPageEmmiter: EventEmitter<number> = new EventEmitter();
-  @Output() getLastPageEmmiter: EventEmitter<number> = new EventEmitter();
+  @Output() onBtnClick: EventEmitter<number> = new EventEmitter<number>();
 
-  getFirstPage(){
-    this.getFirstPageEmmiter.emit();
-  }
-
-  getLastPage(){
-    this.getLastPageEmmiter.emit();
-  }
-
-  toggleClass(){
-      
+  getPage(page: number){
+    this.onBtnClick.emit(page);
   }
 }

@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component, DoCheck, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { IMovie } from 'src/app/main-page/config/models/imovie';
@@ -13,7 +14,7 @@ export class MoviesListComponent implements OnInit, OnDestroy {
   public movies: IMovie[] = [];
   public totalPages!: number;
   private onDestroy$ = new Subject<void>();
-  public pageNumber: number = 24;
+  public pageNumber: number = 1;
 
   constructor( 
     private moviesService: MoviesService
@@ -23,9 +24,9 @@ export class MoviesListComponent implements OnInit, OnDestroy {
     return `http://image.tmdb.org/t/p/w342${moviePosterPath}`;
   }
 
-  getMoviesService(){
+  getMoviesService(page: number){
     this.moviesService
-        .getMovies(this.pageNumber)
+        .getMovies(page)
         .pipe(takeUntil(this.onDestroy$))
         .subscribe( (moviesData)=>{
           this.movies = moviesData.results;
@@ -37,7 +38,7 @@ export class MoviesListComponent implements OnInit, OnDestroy {
   }
   
   ngOnInit(): void {
-    this.getMoviesService();
+    this.getMoviesService(this.pageNumber);
     this.moviesService.getMovies(this.pageNumber)
     .pipe(takeUntil(this.onDestroy$))
     .subscribe( (moviesData)=>{
