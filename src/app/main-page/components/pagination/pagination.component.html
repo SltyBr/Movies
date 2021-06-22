@@ -5,7 +5,7 @@
   >First</button>
 <button 
   class="pagination-item"
-  *ngIf="pageNumber > 2"
+  *ngIf="pageNumber > 1"
   (click)="getPage(pageNumber = pageNumber - 1)"
   >Prev</button>
 <button 
@@ -33,12 +33,12 @@
   >...</button>
 <button 
   class="pagination-item"
-  *ngIf="pageNumber < totalPages - 1"
+  *ngIf="pageNumber < totalPages"
   (click)="getPage(pageNumber = pageNumber + 1)"
   >Next</button>
 <button 
   class="pagination-item"
-  *ngIf="pageNumber < totalPages - 1"
+  *ngIf="pageNumber < totalPages"
   (click)="getPage(pageNumber = totalPages)"
   >Last</button>
 
