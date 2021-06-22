@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DoCheck, OnDestroy, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { IMovie } from 'src/app/main-page/config/models/imovie';
@@ -13,7 +13,7 @@ export class MoviesListComponent implements OnInit, OnDestroy {
   public movies: IMovie[] = [];
   public totalPages!: number;
   private onDestroy$ = new Subject<void>();
-  public pageNumber: number = 1;
+  public pageNumber: number = 24;
 
   constructor( 
     private moviesService: MoviesService
@@ -33,27 +33,7 @@ export class MoviesListComponent implements OnInit, OnDestroy {
   }
 
   trackByMovieId(index: number, movie: IMovie): number{
-    return movie.id
-  }
-
-  getNextPage(){
-    this.pageNumber++;
-    this.getMoviesService()
-  }
-  
-  getPrevPage(){
-    this.pageNumber--;
-    this.getMoviesService()
-  }
-
-  getFirstPage(){
-    this.pageNumber = 1;
-    this.getMoviesService()
-  }
-
-  getLastPage(){
-    this.pageNumber = this.totalPages;
-    this.getMoviesService()
+    return movie.id;
   }
   
   ngOnInit(): void {
