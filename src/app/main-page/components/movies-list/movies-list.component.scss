@@ -35,4 +35,9 @@
       width: calc(100% - 20px);
     }
   }
+
+  &__pagination{
+    padding: 30px 0;
+    text-align: center;
+  }
 }

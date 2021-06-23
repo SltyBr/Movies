@@ -1,0 +1,13 @@
+<div class="movies-list">
+  <app-movies-card 
+  class="movies-list__item" 
+  *ngFor="let movie of movies; trackBy: trackByMovieId" 
+  [posterPath]="getMoviePosterPath(movie.poster_path)">
+</app-movies-card>
+</div>
+<app-pagination 
+  class="movies-list__pagination"
+  [pageNumber]="pageNumber"
+  [totalPages]="totalPages"
+  (onClickChangePage)="changeMoviesPage($event);">
+</app-pagination>

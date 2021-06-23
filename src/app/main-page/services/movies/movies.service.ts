@@ -2,7 +2,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { IMovies } from './imovies';
+import { IMovies } from 'src/app/main-page/config/models/imovies';
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +14,8 @@ export class MoviesService {
 
   private url: string = "http://api.themoviedb.org/3/movie/now_playing?api_key=ebea8cfca72fdff8d2624ad7bbf78e4c"
 
-  getMovies(): Observable<IMovies>{
-    return this.http.get<IMovies>(this.url).pipe(
+  getMovies(pageNumber: number): Observable<IMovies>{
+    return this.http.get<IMovies>(`${this.url}&page=${pageNumber}`).pipe(
       catchError(this.handleError)
     )
   }
