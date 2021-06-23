@@ -1,44 +1,46 @@
-<button 
-  class="pagination-item"
-  *ngIf="pageNumber !== 1"
-  (click)="getPage(pageNumber = 1)"
-  >First</button>
-<button 
-  class="pagination-item"
-  *ngIf="pageNumber > 1"
-  (click)="getPage(pageNumber = pageNumber - 1)"
-  >Prev</button>
-<button 
-  class="pagination-item pagination-item--disabled" 
-  disabled
-  *ngIf="pageNumber > 2"
-  >...</button>
-<button 
-  class="pagination-item"
-  *ngIf="pageNumber > 1"
-  (click)="getPage(pageNumber = pageNumber - 1)"
-  >{{ pageNumber - 1 }}</button>
-<button 
-  class="pagination-item active"
-  >{{ pageNumber }}</button>
-<button 
-  class="pagination-item"
-  *ngIf="pageNumber !== totalPages"
-  (click)="getPage(pageNumber = pageNumber + 1)"
-  >{{ pageNumber + 1 }}</button>
-<button 
-  class="pagination-item pagination-item--disabled" 
-  disabled
-  *ngIf="pageNumber < totalPages - 1"
-  >...</button>
-<button 
-  class="pagination-item"
-  *ngIf="pageNumber < totalPages"
-  (click)="getPage(pageNumber = pageNumber + 1)"
-  >Next</button>
-<button 
-  class="pagination-item"
-  *ngIf="pageNumber < totalPages"
-  (click)="getPage(pageNumber = totalPages)"
-  >Last</button>
+<div class="pagination-wrapper">
+  <button
+    class="pagination-item"
+    *ngIf="pageNumber !== 1"
+    (click)="getPage(pageNumber = 1)"
+    >First</button>
+  <button
+    class="pagination-item"
+    *ngIf="pageNumber > 1"
+    (click)="getPage(pageNumber = pageNumber - 1)"
+    >Prev</button>
+  <button
+    class="pagination-item pagination-item--disabled"
+    disabled
+    *ngIf="pageNumber > 2"
+    >...</button>
+  <button
+    class="pagination-item"
+    *ngIf="pageNumber > 1"
+    (click)="getPage(pageNumber = pageNumber - 1)"
+    >{{ pageNumber - 1 }}</button>
+  <button
+    class="pagination-item active"
+    >{{ pageNumber }}</button>
+  <button
+    class="pagination-item"
+    *ngIf="pageNumber !== totalPages"
+    (click)="getPage(pageNumber = pageNumber + 1)"
+    >{{ pageNumber + 1 }}</button>
+  <button
+    class="pagination-item pagination-item--disabled"
+    disabled
+    *ngIf="pageNumber < totalPages - 1"
+    >...</button>
+  <button
+    class="pagination-item"
+    *ngIf="pageNumber < totalPages"
+    (click)="getPage(pageNumber = pageNumber + 1)"
+    >Next</button>
+  <button
+    class="pagination-item"
+    *ngIf="pageNumber < totalPages"
+    (click)="getPage(pageNumber = totalPages)"
+    >Last</button>
+</div>
 

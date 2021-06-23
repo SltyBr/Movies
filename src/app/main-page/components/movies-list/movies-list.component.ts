@@ -23,6 +23,15 @@ export class MoviesListComponent implements OnInit, OnDestroy {
   ) {}
   
   ngOnInit(): void {
+    this.getMoviesService();
+  }
+
+  ngOnDestroy(): void {
+    this.onDestroy$.next();
+    this.onDestroy$.complete();
+  }
+
+  getMoviesService(){
     this.activatedRoute.queryParams
       .pipe(
         switchMap(queryParams => {
@@ -36,16 +45,11 @@ export class MoviesListComponent implements OnInit, OnDestroy {
       });
   }
 
-  ngOnDestroy(): void {
-    this.onDestroy$.next();
-    this.onDestroy$.complete();
-  }
-
   getMoviePosterPath(moviePosterPath: string): string {
     return `http://image.tmdb.org/t/p/w342${moviePosterPath}`;
   }
 
-  getMoviesService(page: number){
+  changeRouterPath(page: number){
     this.router.navigate(['/movies'], {
       queryParams: {
         page

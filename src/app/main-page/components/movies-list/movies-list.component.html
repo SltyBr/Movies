@@ -1,9 +1,3 @@
-<app-pagination 
-  class="movies-list__pagination"
-  [pageNumber]="pageNumber"
-  [totalPages]="totalPages"
-  (onBtnClick)="getMoviesService($event);">
-</app-pagination>
 <div class="movies-list">
   <app-movies-card 
   class="movies-list__item" 
@@ -11,3 +5,9 @@
   [posterPath]="getMoviePosterPath(movie.poster_path)">
 </app-movies-card>
 </div>
+<app-pagination 
+  class="movies-list__pagination"
+  [pageNumber]="pageNumber"
+  [totalPages]="totalPages"
+  (onClickChangePage)="changeRouterPath($event);">
+</app-pagination>

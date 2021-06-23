@@ -1,24 +1,30 @@
-.pagination-item{
-  background: transparent;
-  border: 1px solid #d1d1d1;
-  font-weight: 700;
-  padding: 5px 20px;
-  border-radius: 10px;
-  transition: all ease 0.5s;
-  &:not(:last-child){
-    margin-right: 3px;
+.pagination{
+  &-wrapper{
+    padding: 30px 0;
   }
-  &:hover{
-    background-color: #00aeff;
-    color: #fff;
-  }
-  &--disabled{
+  &-item{
+    background: transparent;
+    border: 1px solid #d1d1d1;
+    font-weight: 700;
+    padding: 5px 20px;
+    border-radius: 10px;
+    transition: all ease 0.5s;
+    &:not(:last-child){
+      margin-right: 10px;
+    }
     &:hover{
-      color: #222;
-      background: transparent;
+      background-color: #00aeff;
+      color: #fff;
+    }
+    &--disabled{
+      &:hover{
+        color: #222;
+        background: transparent;
+      }
     }
   }
 }
+
 
 .active{
   background-color: #00aeff;

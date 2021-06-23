@@ -10,9 +10,9 @@ export class PaginationComponent{
   @Input() pageNumber: number = 0;
   @Input() totalPages: number = 0;
 
-  @Output() onBtnClick: EventEmitter<number> = new EventEmitter<number>();
+  @Output() onClickChangePage: EventEmitter<number> = new EventEmitter<number>();
 
   getPage(page: number){
-    this.onBtnClick.emit(page);
+    this.onClickChangePage.emit(page);
   }
 }
