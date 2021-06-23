@@ -11,9 +11,9 @@ import { MoviesService } from 'src/app/main-page/services/movies/movies.service'
   styleUrls: ['./movies-list.component.scss']
 })
 export class MoviesListComponent implements OnInit, OnDestroy {
-  public movies: IMovie[] = [];
-  public totalPages!: number;
-  public pageNumber: number = 1;
+  movies: IMovie[] = [];
+  totalPages!: number;
+  pageNumber = 1;
   private onDestroy$ = new Subject<void>();
 
   constructor( 
@@ -23,7 +23,7 @@ export class MoviesListComponent implements OnInit, OnDestroy {
   ) {}
   
   ngOnInit(): void {
-    this.getMoviesService();
+    this.getMoviesData();
   }
 
   ngOnDestroy(): void {
@@ -31,7 +31,7 @@ export class MoviesListComponent implements OnInit, OnDestroy {
     this.onDestroy$.complete();
   }
 
-  getMoviesService(){
+  private getMoviesData(): void{
     this.activatedRoute.queryParams
       .pipe(
         switchMap(queryParams => {
@@ -49,10 +49,10 @@ export class MoviesListComponent implements OnInit, OnDestroy {
     return `http://image.tmdb.org/t/p/w342${moviePosterPath}`;
   }
 
-  changeRouterPath(page: number){
+  changeMoviesPage(pageNumber: number): void{
     this.router.navigate(['/movies'], {
       queryParams: {
-        page
+        page: pageNumber
       },
       replaceUrl: true
     })

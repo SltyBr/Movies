@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 export class ToolbarComponent{
   constructor(private router: Router){}
 
-  goHome(){       
-    this.router.navigate(['']);
+  goHome(): void{       
+    this.router.navigate(['/movies']);
   }
 }
