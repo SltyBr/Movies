@@ -12,10 +12,18 @@ export class MoviesService {
     private http: HttpClient
   ) { }
 
-  private url: string = "http://api.themoviedb.org/3/movie/now_playing?api_key=ebea8cfca72fdff8d2624ad7bbf78e4c"
+  private defualtUrl: string = "http://api.themoviedb.org/3/movie"
 
-  getMovies(pageNumber: number): Observable<IMovies>{
-    return this.http.get<IMovies>(`${this.url}&page=${pageNumber}`).pipe(
+  private apiKey = "ebea8cfca72fdff8d2624ad7bbf78e4c"
+
+  getMoviesByPageNumber(pageNumber: number): Observable<IMovies>{
+    return this.http.get<IMovies>(`${this.defualtUrl}/now_playing?api_key=${this.apiKey}&page=${pageNumber}`).pipe(
+      catchError(this.handleError)
+    )
+  }
+
+  getMovieItem(movieId: number){
+    return this.http.get<IMovies>(`${this.defualtUrl}/${movieId}?api_key=${this.apiKey}`).pipe(
       catchError(this.handleError)
     )
   }
