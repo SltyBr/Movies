@@ -14,6 +14,7 @@ export class MoviesListComponent implements OnInit, OnDestroy {
   movies: IMovie[] = [];
   totalPages!: number;
   pageNumber = 1;
+  movieId!: number;
   private onDestroy$ = new Subject<void>();
 
   constructor( 
@@ -60,5 +61,9 @@ export class MoviesListComponent implements OnInit, OnDestroy {
 
   trackByMovieId(index: number, movie: IMovie): number{
     return movie.id;
+  }
+
+  getMovieById(id: number): void{
+    this.router.navigate([`/movies/${id}`]);
   }
 }
