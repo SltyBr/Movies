@@ -1,1 +1,20 @@
-<p>movies-item works!</p>
+<div *ngIf="movie">
+  <div class="movie">
+    <div class="movie__wrapper" [style.backgroundImage]="getMovieImageUrl(backdropPath)">
+      <div class="movie__card">
+        <div class="movie__poster">
+          <img class="movie__image" [src]="getMoviePoster(posterPath)" [alt]="title">
+        </div>
+        <div class="movie__info">
+          <h2 class="movie__title">{{ title }} <span class="movie__release-date">({{ releaseDate | date: 'yyyy' }})</span></h2>
+          <ul class="movie__list-info">
+            <li class="movie__list-item">Score: {{ voteAverage }}</li>
+            <li class="movie__list-item">Popular: {{ popularity }}</li>
+            <li class="movie__list-item">Date release: {{ releaseDate }}</li>
+          </ul>
+          <p class="movie__overview">{{ overview }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
