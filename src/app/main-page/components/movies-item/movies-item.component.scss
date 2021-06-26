@@ -1,7 +1,7 @@
 .movie{
   color: #fff;
   &__wrapper{
-    height: 95vh;
+    min-height: 95vh;
     display: flex;
     position: relative;
     justify-content: center;
@@ -10,6 +10,7 @@
     background-size: cover;
     background-position: center;
     z-index: 1;
+    padding: 20px 0;
     &::after{
       content: '';
       position: absolute;
@@ -22,15 +23,38 @@
   &__poster{
     min-width: 250px;
     margin-right: 30px;
+
+    @media screen and (max-width: 576px){
+      margin-right: 0;
+    }
   }
   &__image{
     width: 100%;
+    box-shadow: 3px 3px 5px 0 rgba(50, 50, 50, 0.75);
+
+    @media screen and (max-width: 576px){
+      width: 50%;
+    }
   }
   &__card{
     position: relative;
     display: flex;
     max-width: 65%;
     z-index: 9;
+
+    @media screen and (max-width: 1000px){
+      max-width: 90%;
+    }
+
+    @media screen and (max-width: 780px){
+      padding: 0 20px;
+      max-width: 100%;
+    }
+
+    @media screen and (max-width: 576px){
+      padding: 0 20px;
+      flex-wrap: wrap;
+    }
   }
   &__title{
     font-size: 32px;
