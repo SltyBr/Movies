@@ -1,6 +1,6 @@
 <div *ngIf="movie">
   <div class="movie">
-    <div class="movie__wrapper" [style.backgroundImage]="getMovieImageUrl(backdropPath)">
+    <div class="movie__wrapper" [style.backgroundImage]="getBackdropImageUrl(backdropPath)">
       <div class="movie__card">
         <div class="movie__poster">
           <img class="movie__image" [src]="getMoviePoster(posterPath)" [alt]="title">

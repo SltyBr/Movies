@@ -1,6 +1,7 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { IMovie } from '../../config/models/imovie';
 import { MoviesService } from '../../services/movies/movies.service';
 
@@ -10,7 +11,6 @@ import { MoviesService } from '../../services/movies/movies.service';
   styleUrls: ['./movies-item.component.scss']
 })
 export class MoviesItemComponent implements OnInit, OnDestroy {
-
   movie!: IMovie;
   title!: string;
   releaseDate!: string;
@@ -40,7 +40,9 @@ export class MoviesItemComponent implements OnInit, OnDestroy {
   }
   
   getMovieById(): void{
-    this.moviesService.getMovieItem(this.getActivatedRouter())
+    this.moviesService
+        .getMovieItem(this.getActivatedRouter())
+        .pipe(takeUntil(this.onDestroy$))
         .subscribe(movie => {
           this.movie = movie;
           this.title = this.movie.title;
@@ -55,7 +57,8 @@ export class MoviesItemComponent implements OnInit, OnDestroy {
   getMoviePoster(moviePosterPath: string): string {
     return `http://image.tmdb.org/t/p/w342${moviePosterPath}`;
   }
-  getMovieImageUrl(moviePath: string): string {
+
+  getBackdropImageUrl(moviePath: string): string {
     return `url(http://image.tmdb.org/t/p/w342${moviePath})`;
   }
 
