@@ -1,5 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Subject } from 'rxjs';
 import { IMovie } from '../../config/models/imovie';
 import { MoviesService } from '../../services/movies/movies.service';
 
@@ -8,7 +9,7 @@ import { MoviesService } from '../../services/movies/movies.service';
   templateUrl: './movies-item.component.html',
   styleUrls: ['./movies-item.component.scss']
 })
-export class MoviesItemComponent implements OnInit {
+export class MoviesItemComponent implements OnInit, OnDestroy {
 
   movie!: IMovie;
   title!: string;
@@ -18,8 +19,7 @@ export class MoviesItemComponent implements OnInit {
   overview!: string;
   posterPath!: string;
   backdropPath!: string;
-
-  red = 'red';
+  private onDestroy$ = new Subject<void>();
 
   constructor(
     private moviesService: MoviesService,
@@ -28,6 +28,11 @@ export class MoviesItemComponent implements OnInit {
 
   ngOnInit(): void {
     this.getMovieById()
+  }
+
+  ngOnDestroy(): void {
+    this.onDestroy$.next();
+    this.onDestroy$.complete();
   }
 
   getActivatedRouter(): number{
