@@ -4,8 +4,12 @@ import { MainPageComponent } from './main-page/components/main-page/main-page.co
 import { MoviesItemComponent } from './main-page/components/movies-item/movies-item.component';
 
 const routes: Routes = [
-  {path: 'movies', component: MainPageComponent},
-  {path: 'movies/:id', component: MoviesItemComponent},
+  {path: 'movies', children: 
+    [
+      {path: '', component: MainPageComponent},
+      {path: ':id', component: MoviesItemComponent},
+    ]
+  },
   {path: '', redirectTo: '/movies', pathMatch: 'full'}
 ];
 

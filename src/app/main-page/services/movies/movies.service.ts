@@ -23,7 +23,7 @@ export class MoviesService {
     )
   }
 
-  getMovieItem(movieId: number){
+  getMovieItem(movieId: number): Observable<IMovie>{
     return this.http.get<IMovie>(`${this.defaultUrl}/${movieId}?api_key=${this.apiKey}`).pipe(
       catchError(this.handleError)
     )

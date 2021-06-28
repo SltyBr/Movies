@@ -12,13 +12,6 @@ import { MoviesService } from '../../services/movies/movies.service';
 })
 export class MoviesItemComponent implements OnInit, OnDestroy {
   movie!: IMovie;
-  title!: string;
-  releaseDate!: string;
-  voteAverage!: number;
-  popularity!: number;
-  overview!: string;
-  posterPath!: string;
-  backdropPath!: string;
   private onDestroy$ = new Subject<void>();
 
   constructor(
@@ -43,15 +36,7 @@ export class MoviesItemComponent implements OnInit, OnDestroy {
     this.moviesService
         .getMovieItem(this.getActivatedRouter())
         .pipe(takeUntil(this.onDestroy$))
-        .subscribe(movie => {
-          this.movie = movie;
-          this.title = this.movie.title;
-          this.releaseDate = this.movie.release_date;
-          this.voteAverage = this.movie.vote_average;
-          this.popularity = this.movie.popularity;
-          this.overview = this.movie.overview;
-          this.posterPath = this.movie.poster_path;
-          this.backdropPath = this.movie.backdrop_path;});
+        .subscribe(movie => this.movie = movie);
   }
 
   getMoviePoster(moviePosterPath: string): string {
@@ -61,5 +46,4 @@ export class MoviesItemComponent implements OnInit, OnDestroy {
   getBackdropImageUrl(moviePath: string): string {
     return `url(http://image.tmdb.org/t/p/w342${moviePath})`;
   }
-
 }

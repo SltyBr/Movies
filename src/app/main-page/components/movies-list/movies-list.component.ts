@@ -14,7 +14,6 @@ export class MoviesListComponent implements OnInit, OnDestroy {
   movies: IMovie[] = [];
   totalPages!: number;
   pageNumber = 1;
-  movieId!: number;
   private onDestroy$ = new Subject<void>();
 
   constructor( 
