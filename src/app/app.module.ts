@@ -11,6 +11,7 @@ import { MoviesListComponent } from './main-page/components/movies-list/movies-l
 import { MoviesCardComponent } from './main-page/components/movies-card/movies-card.component';
 import { Subject } from 'rxjs';
 import { PaginationComponent } from './main-page/components/pagination/pagination.component';
+import { MoviesItemComponent } from './main-page/components/movies-item/movies-item.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { PaginationComponent } from './main-page/components/pagination/paginatio
     CategoryComponent,
     MoviesListComponent,
     MoviesCardComponent,
-    PaginationComponent
+    PaginationComponent,
+    MoviesItemComponent
   ],
   imports: [
     BrowserModule,

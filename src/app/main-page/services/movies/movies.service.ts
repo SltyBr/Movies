@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { IMovies } from 'src/app/main-page/config/models/imovies';
+import { IMovie } from '../../config/models/imovie';
 
 @Injectable({
   providedIn: 'root'
@@ -12,10 +13,18 @@ export class MoviesService {
     private http: HttpClient
   ) { }
 
-  private url: string = "http://api.themoviedb.org/3/movie/now_playing?api_key=ebea8cfca72fdff8d2624ad7bbf78e4c"
+  private defaultUrl: string = "http://api.themoviedb.org/3/movie"
 
-  getMovies(pageNumber: number): Observable<IMovies>{
-    return this.http.get<IMovies>(`${this.url}&page=${pageNumber}`).pipe(
+  private apiKey = "ebea8cfca72fdff8d2624ad7bbf78e4c"
+
+  getMoviesByPageNumber(pageNumber: number): Observable<IMovies>{
+    return this.http.get<IMovies>(`${this.defaultUrl}/now_playing?api_key=${this.apiKey}&page=${pageNumber}`).pipe(
+      catchError(this.handleError)
+    )
+  }
+
+  getMovieItem(movieId: number): Observable<IMovie>{
+    return this.http.get<IMovie>(`${this.defaultUrl}/${movieId}?api_key=${this.apiKey}`).pipe(
       catchError(this.handleError)
     )
   }

@@ -36,7 +36,7 @@ export class MoviesListComponent implements OnInit, OnDestroy {
       .pipe(
         switchMap(queryParams => {
           this.pageNumber = queryParams.page ? +queryParams.page : 1;
-          return this.moviesService.getMovies(queryParams.page);
+          return this.moviesService.getMoviesByPageNumber(queryParams.page);
         }),
         takeUntil(this.onDestroy$))
       .subscribe(moviesData => {
@@ -60,5 +60,9 @@ export class MoviesListComponent implements OnInit, OnDestroy {
 
   trackByMovieId(index: number, movie: IMovie): number{
     return movie.id;
+  }
+
+  getMovieById(id: number): void{
+    this.router.navigate([`/movies/${id}`]);
   }
 }
